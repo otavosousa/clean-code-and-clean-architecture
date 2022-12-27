@@ -1,4 +1,4 @@
-<p>This repository is the result of experiments in a clean code and clean architecture course based on Uncle Bob's books &#128522.</p>
+<p>This repository is the result of experiments in a clean code and clean architecture course based on Uncle Bob's books and Eric Evans's book &#128522.</p>
 <p>Entering the concepts of DDD, TDD, SOLID and Design patterns.</p>
 
 <div style="display: flex; align-items: center; margin-top: 20px;">
