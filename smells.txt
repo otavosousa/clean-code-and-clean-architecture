@@ -1,0 +1,5 @@
+1 - nomes estranhos
+2 - linhas em branco
+3 - comentários
+4 - código morto
+5 - condições confusas e aninhadas
