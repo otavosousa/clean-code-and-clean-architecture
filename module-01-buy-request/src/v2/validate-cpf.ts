@@ -19,14 +19,10 @@ function isAllCharactersEquals(cpf: string){
   return cpf.split("").every(character => character === cpf[0])
 }
 
-function calculateCharacter(character: string, index: number, reference: number): number{
-  return ( reference - (index + 1) ) * Number(character)
-}
-
 function calculateCheckDigit(cpf: string): string{
   const reference = cpf.length === NUMBER_QUANTITY_CHARACTERS ? NUMBER_REFERENCE_CALCULATE_CHECK_DIGIT_1 : NUMBER_REFERENCE_CALCULATE_CHECK_DIGIT_2
   const calculatedCharacters = cpf.split('').reduce((result, character, index) => {
-    return result + calculateCharacter(character, index, reference)
+    return result + ( reference - (index + 1) ) * Number(character)
   }, 0)
   const calculatedRest = calculatedCharacters % 11
   return String(calculatedRest < 2 ? DIGIT_ZERO : 11 - calculatedRest)
