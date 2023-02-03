@@ -52,5 +52,3 @@ export const validateCpf = function(cpf: string){
   const checkDigit2 = calculateCheckDigit(cpf)
   return checkDigits === (checkDigit1 + checkDigit2)
 }
-
-console.log(validateCpf('43678854028'))
