@@ -23,24 +23,24 @@ function calculateCharacter(character: string, index: number, reference: number)
   return ( reference - (index + 1) ) * Number(character)
 }
 
-function calculateCheckDigit(cpf: string[]): string{
+function calculateCheckDigit(cpf: string): string{
   const reference = cpf.length === NUMBER_QUANTITY_CHARACTERS ? NUMBER_REFERENCE_CALCULATE_CHECK_DIGIT_1 : NUMBER_REFERENCE_CALCULATE_CHECK_DIGIT_2
-  const calculatedCharacters = cpf.reduce((result, character, index) => {
+  const calculatedCharacters = cpf.split('').reduce((result, character, index) => {
     return result + calculateCharacter(character, index, reference)
   }, 0)
   const calculatedRest = calculatedCharacters % 11
   return String(calculatedRest < 2 ? DIGIT_ZERO : 11 - calculatedRest)
 }
 
-function removeCheckDigits(cpf: string){
-  return cpf.split('').slice(0, -2)
+function removeCheckDigits(cpf: string): string{
+  return cpf.split('').slice(0, -2).join('')
 }
 
-function addCheckDigit(cpf: string[], checkDigit: string){
-  return [...cpf, checkDigit]
+function addCheckDigit(cpf: string, checkDigit: string){
+  return cpf + checkDigit
 }
 
-export const validateCpf = function(cpf: string | any){
+export const validateCpf = function(cpf: string){
   if(!cpf) return false
   if(!isNumberCharactersValid(cpf)) return false
   cpf = sanitizeCpf(cpf)
@@ -50,8 +50,7 @@ export const validateCpf = function(cpf: string | any){
   const checkDigit1 = calculateCheckDigit(cpf)
   cpf = addCheckDigit(cpf, checkDigit1)
   const checkDigit2 = calculateCheckDigit(cpf)
-  const isValidCpf = checkDigits === `${checkDigit1}${checkDigit2}`
-  return isValidCpf
+  return checkDigits === (checkDigit1 + checkDigit2)
 }
 
 console.log(validateCpf('43678854028'))
