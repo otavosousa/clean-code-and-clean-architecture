@@ -3,11 +3,11 @@ const NUMBER_REFERENCE_CALCULATE_CHECK_DIGIT_2 = 12
 const NUMBER_QUANTITY_CHARACTERS = 9
 const DIGIT_ZERO = 0
 
-function isNumberCharactersValid(cpf: string){
+function isNumberCharactersValid(cpf: string): boolean{
   return cpf.length >= 11 || cpf.length<= 14
 }
 
-function sanitizeCpf(cpf: string){
+function sanitizeCpf(cpf: string): string{
   return cpf
     .replace('.', '')
     .replace('.', '')
@@ -15,7 +15,7 @@ function sanitizeCpf(cpf: string){
     .replace(" ", "");
 }
 
-function isAllCharactersEquals(cpf: string){
+function isAllCharactersEquals(cpf: string): boolean{
   return cpf.split("").every(character => character === cpf[0])
 }
 
@@ -32,11 +32,11 @@ function removeCheckDigits(cpf: string): string{
   return cpf.split('').slice(0, -2).join('')
 }
 
-function addCheckDigit(cpf: string, checkDigit: string){
+function addCheckDigit(cpf: string, checkDigit: string): string{
   return cpf + checkDigit
 }
 
-export const validateCpf = function(cpf: string){
+export const validateCpf = function(cpf: string): boolean{
   if(!cpf) return false
   if(!isNumberCharactersValid(cpf)) return false
   cpf = sanitizeCpf(cpf)
